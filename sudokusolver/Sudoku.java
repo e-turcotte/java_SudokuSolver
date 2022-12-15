@@ -21,7 +21,7 @@ public class Sudoku{
         this.board = new HashMap<Integer,String>();
         for(int i = 0; i < this.N; i++){
             for(int j = 0; j < this.N; j++){
-                this.board.put(convertPosition(new int[]{j,i}),board[j][i]);
+                this.board.put(convertPosition(new int[]{i,j}),board[i][j]);
             }
         }
         this.wfc = null;
@@ -66,6 +66,12 @@ public class Sudoku{
         wfc = new WFC(palette, nullChar, board, rules);
     }
 
+    public void solve(){
+        wfc.stepNarrow();
+        wfc.stepCollapse();
+           
+    }
+
     public int[] convertPosition(int pos){
         int row = pos%N;
         int col = pos/N;
@@ -80,7 +86,7 @@ public class Sudoku{
         StringBuilder disp = new StringBuilder("");
         for(int i = 0; i < N; i++){
             for(int j = 0; j < N; j++){
-                disp.append(board.get(convertPosition(new int[]{j,i})));
+                disp.append(board.get(convertPosition(new int[]{i,j})));
             }
             disp.append("\n");
         }

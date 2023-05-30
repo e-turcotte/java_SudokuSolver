@@ -1,26 +1,24 @@
 package sudokusolver;
 
-import java.lang.reflect.*;
-import java.util.Scanner;
+import java.awt.event.*;
+import javax.swing.*;
 
 public class SudokuMain{
 
-    public static Scanner user;
-    private static Class<SudokuCmd> cmd = SudokuCmd.class;;
-
     public static void main(String[] args){
-        System.out.println("[ERROR:::incorrect_argument_amount] => use cmd-help for list of instructions");
-        user = new Scanner(System.in);
-        while(true){
-            String inp = user.nextLine();
-            Object[] INP = inp.split(" ");
-            
-            try {
-                cmd.getMethod((String)INP[0], Object[].class).invoke(null, new Object[]{INP});
-            } catch (NoSuchMethodException | SecurityException | IllegalAccessException |
-                        IllegalArgumentException | InvocationTargetException e) {
-                e.printStackTrace();
+        JFrame f = new JFrame();
+        f.setSize(400,500);
+        f.setLayout(null);
+
+        JButton b = new JButton("click me uwu");
+        b.setBounds(130,100,100,40);
+        b.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                System.out.println("neat");
             }
-        }
+        });
+        f.add(b);
+
+        f.setVisible(true);
     }
 }
